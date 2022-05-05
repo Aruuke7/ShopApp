@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ShopApp</string>
+    <string name="add">Add</string>
+    <string name="delete">delete</string>
+    <string name="edit">Edit</string>
+    <string name="get_item">getItem</string>
+    <string name="get_list">getList</string>
+</resources>
