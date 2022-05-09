@@ -1,14 +1,14 @@
-package kg.geektech.shopapp
+package kg.geektech.shopapp.presentation.first
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import kg.geektech.shopapp.databinding.ActivityMainBinding
 import kg.geektech.shopapp.domain.ShopItem
 import kg.geektech.shopapp.presentation.MainViewModel
+import java.lang.RuntimeException
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,58 +28,38 @@ class MainActivity : AppCompatActivity() {
     private fun initListeners() {
 
         binding.btnAdd.setOnClickListener {
-            viewModel.getShopList()
             viewModel.addShopItem(ShopItem(binding.editText.text.toString(), enabled = true))
-            Toast.makeText(applicationContext, binding.editText.text.toString(), Toast.LENGTH_SHORT)
-                .show()
+            Toast.makeText(applicationContext, binding.editText.text.toString(), Toast.LENGTH_SHORT).show()
             Log.d("huh", "initObserves: ${binding.editText.text}")
         }
 
         binding.btnDelete.setOnClickListener {
-            viewModel.getShopList()
-            viewModel.deleteShopItem()
-            Toast.makeText(
-                applicationContext,
-                viewModel.shopListLD.value?.first().toString(),
-                Toast.LENGTH_SHORT
-            ).show()
+            viewModel.shopListLD.value?.first()?.let { it1 -> viewModel.deleteShopItem(it1) }
+            Toast.makeText(applicationContext, viewModel.shopListLD.value?.first().toString(), Toast.LENGTH_SHORT).show()
             Log.d("huh", "initObserves: ${viewModel.shopListLD.value?.first().toString()}")
 
         }
 
         binding.btnEdit.setOnClickListener {
-            viewModel.getShopList()
-            viewModel.editShopItem(ShopItem(binding.editText.text.toString(), enabled = true))
-            Toast.makeText(
-                applicationContext,
-                viewModel.shopListLD.value?.first().toString(),
-                Toast.LENGTH_SHORT
-            ).show()
-            Log.d("huh", "initObserves: ${viewModel.shopListLD.value?.first().toString()}")
+            val id = viewModel.getShopItem(binding.editText.text.toString().toInt())
+            viewModel.editShopItem(id)
+            Toast.makeText(applicationContext, id.toString(), Toast.LENGTH_SHORT).show()
+            Log.d("huh", "initObserves: $id")
 
         }
 
         binding.btnGetItem.setOnClickListener {
-            viewModel.getShopList()
-            viewModel.getShopItem(binding.editText.text.toString().toInt())
-            Toast.makeText(
-                applicationContext,
-                viewModel.shopListLD.value?.get(binding.editText.text.toString().toInt())
-                    .toString(),
-                Toast.LENGTH_SHORT
-            ).show()
-            Log.d(
-                "geek",
-                "initObserves: ${
-                    viewModel.shopListLD.value?.get(
-                        binding.editText.text.toString().toInt()
-                    )?.name.toString()
-                }"
-            )
+            try {
+                val id = viewModel.getShopItem(binding.editText.text.toString().toInt())
+                Toast.makeText(applicationContext, id.toString(), Toast.LENGTH_SHORT).show()
+                Log.d("geek", "initObserves: $id}")
+            }catch (e:RuntimeException){
+                Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+            }
+
         }
         binding.btnGetList.setOnClickListener {
-            viewModel.getShopList()
-            Log.d("huh", "Shoplist:${viewModel.shopListLD.value?.size}")
+            Log.d("huh", "Shoplist:${viewModel.shopListLD.value.toString()}")
             Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_SHORT).show()
         }
     }
