@@ -12,8 +12,8 @@ class RecyclerViewAdapter(): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder
     private val elements = mutableListOf<ShopItem>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setList(element:String, count: Int){
-        elements.add(ShopItem(element, count,true))
+    fun setList(name:String, count: Int){
+        elements.add(ShopItem(name, count,true))
         notifyDataSetChanged()
     }
 

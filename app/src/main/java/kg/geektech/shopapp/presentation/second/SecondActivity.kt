@@ -3,6 +3,7 @@ package kg.geektech.shopapp.presentation.second
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import kg.geektech.shopapp.databinding.ActivitySecondBinding
 
@@ -16,8 +17,10 @@ class SecondActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonSave.setOnClickListener(View.OnClickListener {
-            setResult(RESULT_OK, Intent().putExtra("name",binding.editText.text.toString()))
-            setResult(RESULT_OK, Intent().putExtra("count",binding.editTextNum.text.toString()))
+            val intent = Intent()
+            intent.putExtra("name",binding.editText.text.toString())
+            intent.putExtra("count",binding.editTextNum.text.toString())
+            setResult(RESULT_OK,intent)
             finish()
         })
     }

@@ -3,6 +3,7 @@ package kg.geektech.shopapp.presentation.second
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -28,6 +29,7 @@ class RecyclerActivity : AppCompatActivity() {
             val name = result.data?.getStringExtra("name").toString()
             val count = result.data?.getStringExtra("count").toString().toInt()
             adapter.setList(name,count)
+            Log.d("huh", "onCreate: $name")
         }
     }
 
