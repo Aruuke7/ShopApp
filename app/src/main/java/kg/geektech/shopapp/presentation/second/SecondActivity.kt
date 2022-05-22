@@ -16,12 +16,12 @@ class SecondActivity : AppCompatActivity() {
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonSave.setOnClickListener(View.OnClickListener {
+        binding.buttonSave.setOnClickListener {
             val intent = Intent()
-            intent.putExtra("name",binding.editText.text.toString())
-            intent.putExtra("count",binding.editTextNum.text.toString())
-            setResult(RESULT_OK,intent)
+            intent.putExtra("name", binding.editText.text.toString())
+            intent.putExtra("count", binding.editTextNum.text.toString())
+            setResult(RESULT_OK, intent)
             finish()
-        })
+        }
     }
 }

@@ -12,6 +12,8 @@
         <activity
             android:name="kg.geektech.shopapp.presentation.second.SecondActivity"
             android:exported="false" />
+        <activity android:name=".presentation.first.MainActivity"
+            android:exported="false"/>
         <activity
             android:name="kg.geektech.shopapp.presentation.second.RecyclerActivity"
             android:exported="true" >

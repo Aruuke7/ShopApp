@@ -5,4 +5,5 @@
     <string name="edit">Edit</string>
     <string name="get_item">getItem</string>
     <string name="get_list">getList</string>
+    <string name="text">text</string>
 </resources>
