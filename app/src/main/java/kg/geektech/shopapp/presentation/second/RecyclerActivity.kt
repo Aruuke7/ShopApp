@@ -10,11 +10,12 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import kg.geektech.shopapp.R
 import kg.geektech.shopapp.databinding.ActivityRecyclerBinding
 import kg.geektech.shopapp.domain.ShopItem
 import kg.geektech.shopapp.presentation.MainViewModel
 
-class RecyclerActivity : AppCompatActivity() {
+class RecyclerActivity : AppCompatActivity(R.layout.activity_recycler) {
 
 
     private lateinit var binding: ActivityRecyclerBinding
@@ -55,7 +56,6 @@ class RecyclerActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
     }
 
-
     private fun initClick() {
         binding.floatingActionButton.setOnClickListener {
             val intent = Intent(this, SecondActivity::class.java)
@@ -68,7 +68,7 @@ class RecyclerActivity : AppCompatActivity() {
         }
         adapter.shopItemOnLongClickListener = {
             viewModel.editShopItem(it)
-            Toast.makeText(this, "context $it", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "context ${it.enabled}", Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -28,7 +28,7 @@ class ShopListRepositoryImpl : ShopListRepository {
     override fun editShopItem(shopItem: ShopItem) {
         val oldShopItem = getShopItem(shopItem.id)
         shopList.remove(oldShopItem)
-        shopList.add(shopItem)
+        addShopItem(shopItem)
     }
 
     override fun getShopItem(shopItemId: Int): ShopItem {
